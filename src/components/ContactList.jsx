@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { deleteContact, listContacts } from '../services/ContactService'
 import { useNavigate } from 'react-router-dom'
 

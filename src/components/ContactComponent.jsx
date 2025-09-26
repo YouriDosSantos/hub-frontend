@@ -84,10 +84,10 @@ const ContactComponent = () => {
       } else {
         // refer to ContactService for API method
         createContact(contact).then((response) => {
-        console.log(response.data);
-        navigator('/contacts')
+          console.log(response.data);
+          navigator('/contacts')
       }).catch(error => {
-        console.log(error);
+          console.log(error);
       })
       }
     }
@@ -107,35 +107,35 @@ const ContactComponent = () => {
       valid = false;
     }
 
-    if(firstName.trim()){
+    if(lastName.trim()){
       errorsCopy.lastName = '';
     } else {
       errorsCopy.lastName = 'Last Name is Required!';
       valid = false;
     }
 
-    if(firstName.trim()){
+    if(email.trim()){
       errorsCopy.email = '';
     } else {
       errorsCopy.email = 'Email is Required!';
       valid = false;
     }
 
-    if(firstName.trim()){
+    if(String(relationshipId).trim()){
       errorsCopy.relationshipId = '';
     } else {
       errorsCopy.relationshipId = 'Relationship ID is Required!';
       valid = false;
     }
 
-    if(firstName.trim()){
+    if(jobTitle.trim()){
       errorsCopy.jobTitle = '';
     } else {
       errorsCopy.jobTitle = 'Job Title is Required!';
       valid = false;
     }
 
-    if(firstName.trim()){
+    if(phone.trim()){
       errorsCopy.phone = '';
     } else {
       errorsCopy.phone = 'Phone Number is Required!';

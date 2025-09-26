@@ -16,7 +16,7 @@ const HeaderComponent = () => {
               <a className="nav-link text-white fw-bold" href="/contacts">Contacts</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link text-white fw-bold" href="/financialAccounts">Financial Accounts</a>
+              <a className="nav-link text-white fw-bold" href="/financial-accounts">Financial Accounts</a>
             </li>
             <li className="nav-item">
               <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
