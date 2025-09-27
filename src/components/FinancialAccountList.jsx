@@ -44,7 +44,7 @@ const FinancialAccountList = () => {
     <div className='container mt-4'>
         <div className='card shadow-lg broder-0 rounded-3'>
             <div className='card-body'>
-                <h2 className='text-center mb-4'>List of FinancialAccounts</h2>
+                <h2 className='text-center mb-4'>List of Financial Accounts</h2>
                 <div className='d-flex justify-content-end mb-3'>
                     <button className='btn btn-primary mb-2' onClick={addNewFinancialAccount}>
                         <i className='bi bi-person-plus me-2'></i>Add Financial Account
