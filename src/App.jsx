@@ -9,6 +9,7 @@ import RelationshipComponent from './components/RelationshipComponent'
 import FinancialAccountList from './components/FinancialAccountList'
 import FinancialAccountComponent from './components/FinancialAccountComponent'
 import DashboardComponent from './components/DashboardComponent'
+import Login from './components/Login'
 
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
           <Route path='/add-financial-account' element= { <FinancialAccountComponent /> }></Route>
           {/* http://localhost:3000/edit-financial-account/1 */}
           <Route path='/edit-financial-account/:id' element = { <FinancialAccountComponent />}></Route>
+
+          {/* LOGIN */}
+          <Route path='/login' element={ <Login /> }></Route>
 
         </Routes>
       <FooterComponent />
