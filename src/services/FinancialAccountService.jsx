@@ -1,23 +1,23 @@
 // src/services/FinancialAccountService.js
 import { requestBackend } from "../utils/Requests";
 
-export const listAccounts = () => {
+export const listFinancialAccounts = () => {
   return requestBackend({ method: "GET", url: "/financial-accounts" });
 };
 
-export const createAccount = (account) => {
+export const createFinancialAccount = (account) => {
   return requestBackend({ method: "POST", url: "/financial-accounts", data: account });
 };
 
-export const getAccount = (accountId) => {
+export const getFinancialAccount = (accountId) => {
   return requestBackend({ method: "GET", url: `/financial-accounts/${accountId}` });
 };
 
-export const updateAccount = (accountId, account) => {
+export const updateFinancialAccount = (accountId, account) => {
   return requestBackend({ method: "PUT", url: `/financial-accounts/${accountId}`, data: account });
 };
 
-export const deleteAccount = (accountId) => {
+export const deleteFinancialAccount = (accountId) => {
   return requestBackend({ method: "DELETE", url: `/financial-accounts/${accountId}` });
 };
 
