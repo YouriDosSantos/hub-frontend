@@ -1,6 +1,7 @@
 import { requestBackend } from "../utils/Requests";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
 import qs from "qs";
+import * as AccessTokenRepository from "../components/AccessTokenRepository";
 
 export function loginRequest(loginData) {
     
@@ -29,6 +30,21 @@ export function loginRequest(loginData) {
 
     return requestBackend(config);
 }
+
+
+export function logout() {
+    AccessTokenRepository.remove();
+}
+
+export function saveAccessToken(token) {
+    AccessTokenRepository.save(token);
+}
+
+export function getAccessToken() {
+    return AccessTokenRepository.get();
+}
+
+
 
 // --------------------------------------------------
 
