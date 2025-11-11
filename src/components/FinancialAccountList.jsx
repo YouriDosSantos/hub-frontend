@@ -30,14 +30,26 @@ const FinancialAccountList = () => {
         navigator(`/edit-financial-account/${id}`)
     }
 
-    function removeFinancialAccount(id){
-        console.log(id);
+    // function removeFinancialAccount(id){
+    //     console.log(id);
 
-        deleteFinancialAccount(id).then((response) => {
-            getAllFinancialAccounts();
-        }).catch(error => {
+    //     deleteFinancialAccount(id).then((response) => {
+    //         getAllFinancialAccounts();
+    //     }).catch(error => {
+    //         console.error(error);
+    //     })
+    // }
+
+    async function removeFinancialAccount(id) {
+
+        console.log(id);
+        
+        try {
+            await deleteFinancialAccount(id);   // wait for deletion
+            getAllFinancialAccounts();          // refresh list
+        } catch (error) {
             console.error(error);
-        })
+        }
     }
 
   return (

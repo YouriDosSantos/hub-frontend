@@ -30,15 +30,29 @@ const RelationshipList = () => {
         navigator(`/edit-relationship/${id}`)
     }
 
-    function removeRelationship(id){
+    // function removeRelationship(id){
+    //     console.log(id);
+
+    //     deleteRelationship(id).then((response) => {
+    //         getAllRelationships();
+    //     }).catch(error => {
+    //         console.error(error);
+    //     })
+    // }
+
+    async function removeRelationship(id) {
         console.log(id);
 
-        deleteRelationship(id).then((response) => {
-            getAllRelationships();
-        }).catch(error => {
+        try {
+            await deleteRelationship(id);   // wait for deletion
+            getAllRelationships();          // refresh list
+        } catch (error) {
             console.error(error);
-        })
+        }
     }
+
+
+
 
       return (
     <div className='container mt-4'>

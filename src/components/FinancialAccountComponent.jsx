@@ -19,7 +19,7 @@ const FinancialAccountComponent = () => {
     accountNumber: '',
     accountType: '',
     balance: '',
-    relationshipId
+    relationshipId: ''
   })
 
   const navigator = useNavigate();
@@ -186,6 +186,19 @@ const FinancialAccountComponent = () => {
                 >
                 </input>
                 { errors.accountType && <div className='invalid-feedback'> { errors.accountType } </div> }
+              </div>
+
+              <div className='form-group mb-2'>
+                <label className='form-label'>Balance:</label>
+                <input 
+                  type='number'
+                  placeholder='Enter Balance'
+                  name='balance'
+                  value={balance}
+                  className={`form-control ${ errors.balance ? 'is-invalid': '' }`}
+                  onChange={handleBalance}
+                />
+                  { errors.balance && <div className='invalid-feedback'>{ errors.balance }</div> }
               </div>
 
               <div className='form-group mb-2'>

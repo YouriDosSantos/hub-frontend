@@ -1,4 +1,4 @@
-export type CredentialsDTO = {
-    username: string;
-    password: string;
-}
+// export type CredentialsDTO = {
+//     username: string;
+//     password: string;
+// }
