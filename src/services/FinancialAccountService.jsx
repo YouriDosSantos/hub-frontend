@@ -2,23 +2,23 @@
 import { requestBackend } from "../utils/Requests";
 
 export const listFinancialAccounts = () => {
-  return requestBackend({ method: "GET", url: "/financial-accounts" });
+  return requestBackend({ method: "GET", url: "/api/financial-accounts" });
 };
 
 export const createFinancialAccount = (account) => {
-  return requestBackend({ method: "POST", url: "/financial-accounts", data: account });
+  return requestBackend({ method: "POST", url: "/api/financial-accounts", data: account });
 };
 
 export const getFinancialAccount = (accountId) => {
-  return requestBackend({ method: "GET", url: `/financial-accounts/${accountId}` });
+  return requestBackend({ method: "GET", url: `/api/financial-accounts/${accountId}` });
 };
 
 export const updateFinancialAccount = (accountId, account) => {
-  return requestBackend({ method: "PUT", url: `/financial-accounts/${accountId}`, data: account });
+  return requestBackend({ method: "PUT", url: `/api/financial-accounts/${accountId}`, data: account });
 };
 
 export const deleteFinancialAccount = (accountId) => {
-  return requestBackend({ method: "DELETE", url: `/financial-accounts/${accountId}` });
+  return requestBackend({ method: "DELETE", url: `/api/financial-accounts/${accountId}` });
 };
 
 

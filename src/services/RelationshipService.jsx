@@ -2,23 +2,23 @@
 import { requestBackend } from "../utils/Requests";
 
 export const listRelationships = () => {
-  return requestBackend({ method: "GET", url: "/relationships" });
+  return requestBackend({ method: "GET", url: "/api/relationships" });
 };
 
 export const createRelationship = (relationship) => {
-  return requestBackend({ method: "POST", url: "/relationships", data: relationship });
+  return requestBackend({ method: "POST", url: "/api/relationships", data: relationship });
 };
 
 export const getRelationship = (relationshipId) => {
-  return requestBackend({ method: "GET", url: `/relationships/${relationshipId}` });
+  return requestBackend({ method: "GET", url: `/api/relationships/${relationshipId}` });
 };
 
 export const updateRelationship = (relationshipId, relationship) => {
-  return requestBackend({ method: "PUT", url: `/relationships/${relationshipId}`, data: relationship });
+  return requestBackend({ method: "PUT", url: `/api/relationships/${relationshipId}`, data: relationship });
 };
 
 export const deleteRelationship = (relationshipId) => {
-  return requestBackend({ method: "DELETE", url: `/relationships/${relationshipId}` });
+  return requestBackend({ method: "DELETE", url: `/api/relationships/${relationshipId}` });
 };
 
 

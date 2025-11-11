@@ -23,7 +23,7 @@ function App() {
           <Route path='/' element= { <DashboardComponent /> }></Route>
 
           {/* Contacts */}
-          {/* http://localhost:3000/contacts */}
+          {/* http://localhost:3000/api/contacts */}
           <Route path='/contacts' element= { <ContactList /> }></Route>
           {/* http://localhost:3000/add-contact */}
           <Route path='/add-contact' element= { <ContactComponent /> }></Route>

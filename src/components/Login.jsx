@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { loginRequest } from '../services/AuthService';
+import { loginRequest, saveAccessToken } from '../services/AuthService';
 import './Login.css';
 
 
@@ -16,17 +16,34 @@ export default function Login() {
     }
 
     function handleSubmit(event) {
-        event.preventDefault();
-        loginRequest(formData)
-            .then(response => {
-                console.log("Login Success: ", response.data);
-            })
-            .catch(error => {
-                console.log("Login Error", error);
-            });
+      event.preventDefault();
+      loginRequest(formData)
+        .then(response => {
+          console.log("Login Success: ", response.data);
+
+          saveAccessToken(response.data.access_token);
+
+          console.log("Token saved: ", response.data.access_token);
+        })
+        .catch(error => {
+          console.log("Login Error", error);
+        });
     }
 
+    // ---------------------------------------------------
 
+    // function handleSubmit(event) {
+    //     event.preventDefault();
+    //     loginRequest(formData)
+    //         .then(response => {
+    //             console.log("Login Success: ", response.data);
+    //         })
+    //         .catch(error => {
+    //             console.log("Login Error", error);
+    //         });
+    // }
+
+//---------------------------------------------------------------------
     // function handleSubmit(event) {
     //     event.preventDefault();
     //     authService.loginRequest(formData)

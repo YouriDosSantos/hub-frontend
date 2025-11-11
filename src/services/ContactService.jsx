@@ -1,23 +1,23 @@
 import { requestBackend } from "../utils/Requests";
 
 export const listContacts = () => {
-  return requestBackend({ method: "GET", url: "/contacts" });
+  return requestBackend({ method: "GET", url: "/api/contacts" });
 };
 
 export const createContact = (contact) => {
-  return requestBackend({ method: "POST", url: "/contacts", data: contact });
+  return requestBackend({ method: "POST", url: "/api/contacts", data: contact });
 };
 
 export const getContact = (contactId) => {
-  return requestBackend({ method: "GET", url: `/contacts/${contactId}` });
+  return requestBackend({ method: "GET", url: `/api/contacts/${contactId}` });
 };
 
 export const updateContact = (contactId, contact) => {
-  return requestBackend({ method: "PUT", url: `/contacts/${contactId}`, data: contact });
+  return requestBackend({ method: "PUT", url: `/api/contacts/${contactId}`, data: contact });
 };
 
 export const deleteContact = (contactId) => {
-  return requestBackend({ method: "DELETE", url: `/contacts/${contactId}` });
+  return requestBackend({ method: "DELETE", url: `/api/contacts/${contactId}` });
 };
 
 
