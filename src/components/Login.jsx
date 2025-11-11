@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { loginRequest, saveAccessToken } from '../services/AuthService';
+import { useNavigate } from "react-router-dom";
 import './Login.css';
 
 
@@ -9,6 +10,8 @@ export default function Login() {
         username: "",
         password: ""
     });
+
+    const navigate = useNavigate();
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -24,55 +27,13 @@ export default function Login() {
           saveAccessToken(response.data.access_token);
 
           console.log("Token saved: ", response.data.access_token);
+
+          navigate("/");
         })
         .catch(error => {
           console.log("Login Error", error);
         });
     }
-
-    // ---------------------------------------------------
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     loginRequest(formData)
-    //         .then(response => {
-    //             console.log("Login Success: ", response.data);
-    //         })
-    //         .catch(error => {
-    //             console.log("Login Error", error);
-    //         });
-    // }
-
-//---------------------------------------------------------------------
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     authService.loginRequest(formData)
-    //         .then(response => {
-    //             console.log(response.data);
-    //         })
-    //         .catch(error => {
-    //             console.log("Login Error", error);
-    //         })
-    // }
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     loginRequest(formData);
-    // }
-
-
-    // -----------------------------
-
-    // const [formData, setFormData] = useState<CredentialsDTO>({
-    //     username: '',
-    //     password: ''
-    // })
-
-    // function handleSubmit(event: any) {
-    //     event.preventDefault();
-    //     loginRequest(formData);
-    // }
-
 
 
     return (
