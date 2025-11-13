@@ -1,6 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { findMe } from '../services/UserService';
+import { mapUserInfo } from './UserInfo';
+import { getAccessToken } from '../services/AuthService';
+import { useAuth } from './AuthContext';
+
 
 const HeaderComponent = () => {
+
+  const { user } = useAuth();
+
+
+  // const [user, setUser] = useState({ name: "", email: "", roles: [] });
+  // useEffect(() => {
+  //   const token = getAccessToken();
+  //   if (token) {
+  //     findMe()
+  //       .then(response => {
+  //         const info = mapUserInfo(response.data);
+  //         setUser(info);
+  //       })
+  //       .catch(error => {
+  //         console.error("Error fetching user info: ", error);
+  //       });
+  //   }
+  // }, []);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div className="container">
@@ -21,6 +45,13 @@ const HeaderComponent = () => {
             <li className="nav-item">
               <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
             </li>
+            {user?.name && (
+              <li className="nav-item">
+                <span className="nav-link text-info fw-bold">
+                  {user.name}
+                </span>
+              </li>
+            )}
           </ul>
         </div>
       </div>

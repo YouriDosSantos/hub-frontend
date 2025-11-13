@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { loginRequest, saveAccessToken } from '../services/AuthService';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "./AuthContext";
+import { findMe, mapUserInfo } from "../services/UserService";
 import './Login.css';
 
 
 export default function Login() {
+
+  const { setUser } = useAuth();
 
     const [formData, setFormData] = useState({
         username: "",
@@ -18,22 +22,38 @@ export default function Login() {
         setFormData(prev => ({ ...prev, [name]: value }));
     }
 
+
     function handleSubmit(event) {
-      event.preventDefault();
-      loginRequest(formData)
-        .then(response => {
-          console.log("Login Success: ", response.data);
+    event.preventDefault();
+    loginRequest(formData)
+      .then(response => {
+        saveAccessToken(response.data.access_token);
 
-          saveAccessToken(response.data.access_token);
-
-          console.log("Token saved: ", response.data.access_token);
-
+        // ✅ fetch user info and update context
+        findMe().then(res => {
+          setUser(mapUserInfo(res.data));
           navigate("/dashboard");
-        })
-        .catch(error => {
-          console.log("Login Error", error);
         });
-    }
+      })
+      .catch(error => console.log("Login Error", error));
+  }
+
+    // function handleSubmit(event) {
+    //   event.preventDefault();
+    //   loginRequest(formData)
+    //     .then(response => {
+    //       console.log("Login Success: ", response.data);
+
+    //       saveAccessToken(response.data.access_token);
+
+    //       console.log("Token saved: ", response.data.access_token);
+
+    //       navigate("/dashboard");
+    //     })
+    //     .catch(error => {
+    //       console.log("Login Error", error);
+    //     });
+    // }
 
 
     return (
