@@ -4,7 +4,7 @@ import ContactList from './components/ContactList'
 import RelationshipList from './components/RelationshipList'
 import FooterComponent from './components/FooterComponent'
 import HeaderComponent from './components/HeaderComponent'
-import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import RelationshipComponent from './components/RelationshipComponent'
 import FinancialAccountList from './components/FinancialAccountList'
 import FinancialAccountComponent from './components/FinancialAccountComponent'
@@ -19,8 +19,12 @@ function App() {
     <BrowserRouter>
       <HeaderComponent />
         <Routes>
-          {/* http://localhost:3000/ */}
-          <Route path='/' element= { <DashboardComponent /> }></Route>
+          
+          {/* http://localhost:3000/dashboard */}
+          <Route path="/" element={<Navigate to="/login" />} />
+
+          {/* http://localhost:3000/dashboard */}
+          <Route path='/dashboard' element= { <DashboardComponent /> }></Route>
 
           {/* Contacts */}
           {/* http://localhost:3000/api/contacts */}

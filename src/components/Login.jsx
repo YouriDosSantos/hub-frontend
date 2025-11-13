@@ -28,7 +28,7 @@ export default function Login() {
 
           console.log("Token saved: ", response.data.access_token);
 
-          navigate("/");
+          navigate("/dashboard");
         })
         .catch(error => {
           console.log("Login Error", error);

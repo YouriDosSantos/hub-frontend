@@ -5,7 +5,7 @@ const HeaderComponent = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div className="container">
         {/* Brand / Logo */}
-        <a className="navbar-brand fw-bold fs-4" href="/">
+        <a className="navbar-brand fw-bold fs-4" href="/dashboard">
           💰 Finance Hub
         </a>
 
