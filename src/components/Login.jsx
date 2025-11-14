@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { findMe, mapUserInfo } from "../services/UserService";
 import './Login.css';
+import * as userRepo from "../components/UserRepository";
 
 
 export default function Login() {
@@ -31,7 +32,9 @@ export default function Login() {
 
         // ✅ fetch user info and update context
         findMe().then(res => {
-          setUser(mapUserInfo(res.data));
+          const info = mapUserInfo(res.data);
+          setUser(info);
+          userRepo.save(info);
           navigate("/dashboard");
         });
       })
