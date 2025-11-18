@@ -25,8 +25,8 @@ export default function Login() {
 
 
     function handleSubmit(event) {
-    event.preventDefault();
-    loginRequest(formData)
+      event.preventDefault();
+      loginRequest(formData)
       .then(response => {
         saveAccessToken(response.data.access_token);
 
@@ -38,25 +38,22 @@ export default function Login() {
           navigate("/dashboard");
         });
       })
-      .catch(error => console.log("Login Error", error));
+      .catch(error => {
+        if (error.response) {
+          if (error.response.status === 400) {
+            const errMsg = error.response.data.error_description || "Invalid username or password";
+            alert(errMsg);
+          } else {
+            alert("Login failed: " + error.response.status);
+          }
+        } else {
+          alert("Network error: " + error.message);
+        }
+      });
   }
 
-    // function handleSubmit(event) {
-    //   event.preventDefault();
-    //   loginRequest(formData)
-    //     .then(response => {
-    //       console.log("Login Success: ", response.data);
 
-    //       saveAccessToken(response.data.access_token);
-
-    //       console.log("Token saved: ", response.data.access_token);
-
-    //       navigate("/dashboard");
-    //     })
-    //     .catch(error => {
-    //       console.log("Login Error", error);
-    //     });
-    // }
+  // .catch(error => console.log("Login Error", error));
 
 
     return (
