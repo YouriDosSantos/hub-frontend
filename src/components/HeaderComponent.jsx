@@ -3,12 +3,20 @@
 // import { mapUserInfo } from './UserInfo';
 // import { getAccessToken } from '../services/AuthService';
 import { useAuth } from './AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../services/AuthService';
 
 
 const HeaderComponent = () => {
 
-  const { user } = useAuth();
+  const { user, setUser } = useAuth();
+  const navigate = useNavigate();
 
+  function handleLogout(){
+    logout();           //clear local storage
+    setUser(null);      //reset context
+    navigate("/login"); //redirect to login page
+  }
 
   // const [user, setUser] = useState({ name: "", email: "", roles: [] });
   // useEffect(() => {
@@ -46,11 +54,18 @@ const HeaderComponent = () => {
               <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
             </li>
             {user?.name && (
+              <>
               <li className="nav-item">
                 <span className="nav-link text-info fw-bold">
                   {user.name}
                 </span>
               </li>
+              <li className="nav-item">
+                <button className="btn btn-danger ms-2" onClick={handleLogout}>
+                  Logout
+                </button>
+              </li>
+              </>
             )}
           </ul>
         </div>

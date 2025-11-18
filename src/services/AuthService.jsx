@@ -2,6 +2,7 @@ import { requestBackend } from "../utils/Requests";
 import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
 import qs from "qs";
 import * as AccessTokenRepository from "../components/AccessTokenRepository";
+import * as userRepo from "../components/UserRepository";
 
 export function loginRequest(loginData) {
     
@@ -33,7 +34,8 @@ export function loginRequest(loginData) {
 
 
 export function logout() {
-    AccessTokenRepository.remove();
+    AccessTokenRepository.remove(); //clear token
+    userRepo.remove();              //clear user
 }
 
 export function saveAccessToken(token) {
