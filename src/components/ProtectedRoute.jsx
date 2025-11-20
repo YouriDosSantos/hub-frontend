@@ -6,9 +6,12 @@ export default function ProtectedRoute({ children }){
     const { user } = useAuth();
     const token = getAccessToken();
 
-    if(!user || !token) {
-        return <Navigate to="/login" replace />;
-    }
+   if(!token) {
+    return <Navigate to="/login" replace />;
+   }
 
+   if(!user){
+    return <div> Loading...</div>;
+   }
     return children;
 }

@@ -21,6 +21,7 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <HeaderComponent />
+        <div className='content'>
           <Routes>
             
             {/* http://localhost:3000/dashboard */}
@@ -58,6 +59,7 @@ function App() {
             <Route path='/login' element={ <Login /> }></Route>
 
           </Routes>
+        </div>
         <FooterComponent />
       </BrowserRouter>
     </AuthProvider>
