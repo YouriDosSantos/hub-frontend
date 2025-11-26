@@ -30,16 +30,6 @@ const ContactList = () => {
         navigator(`/edit-contact/${id}`)
     }
 
-    // function removeContact(id){
-    //     console.log(id);
-
-    //     deleteContact(id).then((response) => {
-    //         getAllContacts();
-    //     }).catch(error => {
-    //         console.error(error);
-    //     })
-    // }
-
     async function removeContact(id) {
 
         console.log(id);
