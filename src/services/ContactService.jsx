@@ -1,7 +1,12 @@
 import { requestBackend } from "../utils/Requests";
 
-export const listContacts = () => {
-  return requestBackend({ method: "GET", url: "/api/contacts" });
+//changed for pagination
+export const listContacts = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {
+  return requestBackend({ 
+    method: "GET", 
+    url: "/api/contacts" ,
+    params: { page, size, sortBy, direction ,search }
+  });
 };
 
 export const createContact = (contact) => {

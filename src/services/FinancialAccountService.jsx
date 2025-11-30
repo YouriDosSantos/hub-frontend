@@ -1,8 +1,14 @@
 // src/services/FinancialAccountService.js
 import { requestBackend } from "../utils/Requests";
 
-export const listFinancialAccounts = () => {
-  return requestBackend({ method: "GET", url: "/api/financial-accounts" });
+
+// Change for Pagination
+export const listFinancialAccounts = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {
+  return requestBackend({ 
+    method: "GET", 
+    url: "/api/financial-accounts",
+    params: { page, size, sortBy, direction, search}
+    });
 };
 
 export const createFinancialAccount = (account) => {

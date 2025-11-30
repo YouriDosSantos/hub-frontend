@@ -1,8 +1,13 @@
 // src/services/RelationshipService.js
 import { requestBackend } from "../utils/Requests";
 
-export const listRelationships = () => {
-  return requestBackend({ method: "GET", url: "/api/relationships" });
+// change for Pagination
+export const listRelationships = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {
+  return requestBackend({ 
+    method: "GET", 
+    url: "/api/relationships",
+    params: { page, size, sortBy, direction, search }
+  });
 };
 
 export const createRelationship = (relationship) => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { deleteContact, listContacts } from '../services/ContactService'
 import { useNavigate } from 'react-router-dom'
 
@@ -6,21 +6,34 @@ const ContactList = () => {
 
     // syntax for useState Hook -> Contacts is state variable, setContacts is function that updates contacts = state variable
     const [contacts, setContacts] = useState([])
+    //changes for pagination
+    const [page, setPage] = useState(0);
+    const [size] = useState(5); // not using setSize, not planning on changing page size
+    const [totalPages, setTotalPages] = useState(0);
+    const [sortBy, setSortBy] = useState("lastName");
+    const [direction, setDirection] = useState("asc");
+    const [search, setSearch] = useState("");
+
 
     //variable for the useNavigate shown above
     const navigator = useNavigate();
 
-    useEffect(() => {
-        getAllContacts();
-    }, [])
-
-    function getAllContacts(){
-        listContacts().then((response) => {
-            setContacts(response.data);
-        }).catch(error => {
+    //changed for pagination
+    const getAllContacts = useCallback(() => {
+        listContacts(page, size, sortBy, direction ,search)
+        .then((response) => {
+            setContacts(response.data.content);
+            setTotalPages(response.data.totalPages);
+        })
+        .catch(error => {
             console.error(error);
         })
-    }
+    }, [page, size, sortBy, direction ,search]);
+
+     //changed for pagination
+    useEffect(() => {
+        getAllContacts();
+    }, [getAllContacts]);
 
     function addNewContact(){
         navigator('/add-contact')
@@ -47,17 +60,43 @@ const ContactList = () => {
         <div className='card shadow-lg broder-0 rounded-3'>
             <div className='card-body'>
                 <h2 className='text-center mb-4'>List of Contacts</h2>
+
+                {/* add contact button */}
                 <div className='d-flex justify-content-end mb-3'>
                     <button className='btn btn-primary mb-2' onClick={addNewContact}>
                         <i className='bi bi-person-plus me-2'></i>Add Contact
                     </button>
                 </div>
+
+                {/* Search Bar */}
+                <div className='mb-3 d-flex'>
+                    <input 
+                        type='text'
+                        placeholder='Search Contacts'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className='form-control me-2'
+                    />
+                    <button className='btn btn-secondary' onClick={() => setPage(0)}>Search</button>
+                </div>
+
                 <table className='table table-striped table-bordered'>
                     <thead>
                         <tr className='table-dark text-center align-middle'>
                             <th>Contact Id</th>
                             <th>Contact First Name</th>
-                            <th>Contact Last Name</th>
+
+                            {/* Sortable Last Name Header */}
+                            <th
+                                onClick={() => {
+                                    setSortBy("lastName");
+                                    setDirection(direction === "asc" ? "desc" : "asc");
+                                }}
+                                style={{ cursor: "pointer"}}
+                            >
+                                Contact Last Name {sortBy === "lastName" ? (direction === "asc" ? "↑" : "↓") : ""}
+                            </th>
+
                             <th>Contact Email</th>
                             <th>Contact Relationship Id</th>
                             <th>Contact Phone Number</th>
@@ -88,6 +127,28 @@ const ContactList = () => {
                         }
                     </tbody>
                 </table>
+
+                {/*Pagination Controls*/}
+                <div className='d-flex justify-content-between mt-3'>
+                    <button
+                        className='btn btn-outline-primary'
+                        disabled={page === 0}
+                        onClick={() => setPage(page - 1)}
+                    >
+                        Previous
+                    </button>
+
+                    <span>Page {page + 1} of {totalPages} </span>
+
+                    <button
+                        className='btn btn-outline-primary'
+                        disabled={page === totalPages - 1}
+                        onClick={() => setPage(page + 1)}
+                    >
+                        Next
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
