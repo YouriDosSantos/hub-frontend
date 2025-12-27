@@ -4,10 +4,15 @@ import { requestBackend } from "../utils/Requests";
 
 // Change for Pagination
 export const listFinancialAccounts = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {
+  
+  //change for JDBC
+  const offset = page * size;
+  const limit = size;
+  
   return requestBackend({ 
     method: "GET", 
     url: "/api/financial-accounts",
-    params: { page, size, sortBy, direction, search}
+    params: { offset, limit, sortBy, direction, search}
     });
 };
 

@@ -10,7 +10,7 @@ const FinancialAccountList = () => {
     const [page, setPage] = useState(0);
     const [size] = useState(5); // not using setSize, not planning on changing page size
     const [totalPages, setTotalPages] = useState(0);
-    const [sortBy, setSortBy] = useState("accountName");
+    const [sortBy, setSortBy] = useState("account_name");
     const [direction, setDirection] = useState("asc");
     const [search, setSearch] = useState("");   
 
@@ -35,7 +35,10 @@ const FinancialAccountList = () => {
         getAllFinancialAccounts();
     }, [getAllFinancialAccounts]);
 
-
+    //Changed for pagination
+    useEffect(() => {
+        setPage(0);
+    }, [search]);
 
     function addNewFinancialAccount(){
         navigator('/add-financial-account')
@@ -92,12 +95,12 @@ const FinancialAccountList = () => {
                             {/* Sortable Account Name Header */}
                             <th
                                 onClick={() => {
-                                    setSortBy("accountName");
+                                    setSortBy("account_name");
                                     setDirection(direction === "asc" ? "desc" : "asc");
                                 }}
                                 style={{ cursor: "pointer"}}
                             >
-                                Financial Account Name {sortBy === "accountName" ? (direction === "asc" ? "↑" : "↓") : ""}
+                                Financial Account Name {sortBy === "account_name" ? (direction === "asc" ? "↑" : "↓") : ""}
                             </th>
 
                             <th>Financial Account Number</th>
@@ -139,7 +142,11 @@ const FinancialAccountList = () => {
                         Previous
                     </button>
 
-                    <span>Page {page + 1} of {totalPages} </span>
+                    <span>
+                        {totalPages > 0
+                            ? `Page ${page + 1} of ${totalPages}`
+                            : "No results"} 
+                    </span>
 
                     <button
                         className='btn btn-outline-primary'

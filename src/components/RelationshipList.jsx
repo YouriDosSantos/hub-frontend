@@ -34,6 +34,12 @@ const RelationshipList = () => {
         getAllRelationships();
     }, [getAllRelationships]);
 
+    //change for pagination
+    useEffect(() => {
+        setPage(0);
+
+    }, [search]);
+
     function addNewRelationship(){
         navigator('/add-relationship')
     }
@@ -135,7 +141,12 @@ const RelationshipList = () => {
                         Previous
                     </button>
 
-                    <span>Page {page + 1} of {totalPages} </span>
+                    <span>
+                        {totalPages > 0
+                            ? `Page ${page + 1} of ${totalPages}`
+                            : "No results"}
+
+                    </span>
 
                     <button
                         className='btn btn-outline-primary'

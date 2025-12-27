@@ -10,7 +10,7 @@ const ContactList = () => {
     const [page, setPage] = useState(0);
     const [size] = useState(5); // not using setSize, not planning on changing page size
     const [totalPages, setTotalPages] = useState(0);
-    const [sortBy, setSortBy] = useState("lastName");
+    const [sortBy, setSortBy] = useState("last_name");
     const [direction, setDirection] = useState("asc");
     const [search, setSearch] = useState("");
 
@@ -30,10 +30,17 @@ const ContactList = () => {
         })
     }, [page, size, sortBy, direction ,search]);
 
+
      //changed for pagination
     useEffect(() => {
         getAllContacts();
     }, [getAllContacts]);
+
+     // Changed for pagination
+    useEffect(() => {
+        setPage(0);
+
+    }, [search]);
 
     function addNewContact(){
         navigator('/add-contact')
@@ -89,12 +96,12 @@ const ContactList = () => {
                             {/* Sortable Last Name Header */}
                             <th
                                 onClick={() => {
-                                    setSortBy("lastName");
+                                    setSortBy("last_name");
                                     setDirection(direction === "asc" ? "desc" : "asc");
                                 }}
                                 style={{ cursor: "pointer"}}
                             >
-                                Contact Last Name {sortBy === "lastName" ? (direction === "asc" ? "↑" : "↓") : ""}
+                                Contact Last Name {sortBy === "last_name" ? (direction === "asc" ? "↑" : "↓") : ""}
                             </th>
 
                             <th>Contact Email</th>
@@ -138,7 +145,11 @@ const ContactList = () => {
                         Previous
                     </button>
 
-                    <span>Page {page + 1} of {totalPages} </span>
+                    <span>
+                        {totalPages > 0
+                            ? `Page ${page + 1} of ${totalPages}`
+                            : "No results"}
+                    </span>
 
                     <button
                         className='btn btn-outline-primary'

@@ -3,10 +3,15 @@ import { requestBackend } from "../utils/Requests";
 
 // change for Pagination
 export const listRelationships = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {
+  
+  //Change for JDBC
+  const offset = page * size;
+  const limit = size;
+  
   return requestBackend({ 
     method: "GET", 
     url: "/api/relationships",
-    params: { page, size, sortBy, direction, search }
+    params: { offset, limit, sortBy, direction, search }
   });
 };
 

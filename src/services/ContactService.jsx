@@ -2,10 +2,15 @@ import { requestBackend } from "../utils/Requests";
 
 //changed for pagination
 export const listContacts = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {
+
+  //change for JDBC
+  const offset = page * size;
+  const limit = size;
+
   return requestBackend({ 
     method: "GET", 
     url: "/api/contacts" ,
-    params: { page, size, sortBy, direction ,search }
+    params: { offset, limit, sortBy, direction ,search }
   });
 };
 
