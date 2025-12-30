@@ -105,6 +105,7 @@ const ContactList = () => {
                             </th>
 
                             <th>Contact Email</th>
+                            <th>Related Relationship</th>
                             <th>Contact Relationship Id</th>
                             <th>Contact Phone Number</th>
                             <th>Contact Job Title</th>
@@ -119,6 +120,7 @@ const ContactList = () => {
                                     <td>{contact.firstName}</td>
                                     <td>{contact.lastName}</td>
                                     <td>{contact.email}</td>
+                                    <td>{contact.relationshipName}</td>
                                     <td>{contact.relationshipId}</td>
                                     <td>{contact.phone}</td>
                                     <td>{contact.jobTitle}</td>

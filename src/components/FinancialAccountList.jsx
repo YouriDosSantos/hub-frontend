@@ -106,6 +106,7 @@ const FinancialAccountList = () => {
                             <th>Financial Account Number</th>
                             <th>Financial Account Type</th>
                             <th>Financial Account Balance</th>
+                            <th>Related Relationship</th>
                             <th>Financial Account Relationship Id</th>
                             <th>Actions</th>
                         </tr>
@@ -119,6 +120,7 @@ const FinancialAccountList = () => {
                                     <td>{financialAccount.accountNumber}</td>
                                     <td>{financialAccount.accountType}</td>
                                     <td>{financialAccount.balance}</td>
+                                    <td>{financialAccount.relationshipName}</td>
                                     <td>{financialAccount.relationshipId}</td>
                                     <td>
                                         <div className='d-flex justify-content-center gap-2'>
