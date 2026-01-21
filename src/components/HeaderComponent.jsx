@@ -18,21 +18,6 @@ const HeaderComponent = () => {
     navigate("/login"); //redirect to login page
   }
 
-  // const [user, setUser] = useState({ name: "", email: "", roles: [] });
-  // useEffect(() => {
-  //   const token = getAccessToken();
-  //   if (token) {
-  //     findMe()
-  //       .then(response => {
-  //         const info = mapUserInfo(response.data);
-  //         setUser(info);
-  //       })
-  //       .catch(error => {
-  //         console.error("Error fetching user info: ", error);
-  //       });
-  //   }
-  // }, []);
-
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div className="container">
@@ -44,15 +29,20 @@ const HeaderComponent = () => {
         {/* Collapsible nav items */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link text-white fw-bold" href="/contacts">Contacts</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white fw-bold" href="/financial-accounts">Financial Accounts</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
-            </li>
+
+            {user && (
+              <>
+                <li className="nav-item">
+                  <a className="nav-link text-white fw-bold" href="/contacts">Contacts</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link text-white fw-bold" href="/financial-accounts">Financial Accounts</a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
+                </li>
+              </>
+            )}
             {user?.name && (
               <>
               <li className="nav-item">
