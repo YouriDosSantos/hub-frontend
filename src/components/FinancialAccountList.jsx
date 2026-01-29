@@ -12,7 +12,10 @@ const FinancialAccountList = () => {
     const [totalPages, setTotalPages] = useState(0);
     const [sortBy, setSortBy] = useState("account_name");
     const [direction, setDirection] = useState("asc");
+
+    //Separate Input text from actual Search query
     const [search, setSearch] = useState("");   
+    const [searchInput, setSearchInput] = useState("");
 
     //variable for the useNavigate shown above
     const navigator = useNavigate();
@@ -39,6 +42,14 @@ const FinancialAccountList = () => {
     useEffect(() => {
         setPage(0);
     }, [search]);
+
+    //Auto-reset list when searchINput becomes empty
+    useEffect(() => {
+        if(searchInput === "") {
+            setSearch("");
+            setPage(0);
+        }
+    }, [searchInput]);
 
     function addNewFinancialAccount(){
         navigator('/add-financial-account')
@@ -74,7 +85,7 @@ const FinancialAccountList = () => {
                 </div>
 
 
-                {/* Search Bar */}
+                {/* Search Bar
                 <div className='mb-3 d-flex'>
                     <input 
                         type='text'
@@ -83,8 +94,30 @@ const FinancialAccountList = () => {
                         onChange={(e) => setSearch(e.target.value)}
                         className='form-control me-2'
                     />
-                    <button className='btn btn-secondary' onClick={() => setPage(0)}>Search</button>
-                </div>
+                    <button className='btn btn-secondary' 
+                    onClick={() => setPage(0)}>Search</button>
+                </div> */}
+
+                <form
+                    className='mb-3 d-flex'
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        setPage(0);
+                        setSearch(searchInput);
+                    }}
+                >
+                    <input
+                        type='text'
+                        placeholder='Search Financial Accounts'
+                        value={searchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
+                        className='form-control me-2'
+                    />
+
+                    <button className='btn btn-secondary' type='submit'>
+                        Search
+                    </button>
+                </form>
 
 
                 <table className='table table-striped table-bordered'>

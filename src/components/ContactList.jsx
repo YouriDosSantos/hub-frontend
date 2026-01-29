@@ -106,6 +106,7 @@ const ContactList = () => {
                     </button>
                 </div> */}
 
+                {/* Search Bar */}
                 <form
                     className='mb-3 d-flex'
                     onSubmit={(e) => {

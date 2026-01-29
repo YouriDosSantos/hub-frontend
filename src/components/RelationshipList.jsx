@@ -13,7 +13,10 @@ const RelationshipList = () => {
     const [totalPages, setTotalPages] = useState (0);
     const [sortBy, setSortBy] = useState("name");
     const [direction, setDirection] = useState("asc");
+
+    //Separate Input text from actual Search query
     const [search, setSearch] = useState("");
+    const [searchInput, setSearchInput] = useState("");
 
     const navigator = useNavigate();
 
@@ -39,6 +42,14 @@ const RelationshipList = () => {
         setPage(0);
 
     }, [search]);
+
+    //Auto rest list when searchInput becomes empty
+    useEffect(() => {
+        if(searchInput === "") {
+            setSearch("");
+            setPage(0);
+        }
+    }, [searchInput]);
 
     function addNewRelationship(){
         navigator('/add-relationship')
@@ -76,7 +87,7 @@ const RelationshipList = () => {
                     </button>
                 </div>
 
-                {/* Search Bar */}
+                {/* Search Bar
                 <div className='mb-3 d-flex'>
                     <input 
                         type='text'
@@ -86,7 +97,28 @@ const RelationshipList = () => {
                         className='form-control me-2'
                     />
                     <button className='btn btn-secondary' onClick={() => setPage(0)}>Search</button>
-                </div>
+                </div> */}
+
+                <form
+                    className='mb-3 d-flex'
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        setPage(0);
+                        setSearch(searchInput);
+                    }}
+                >
+                    <input
+                        type='text'
+                        placeholder='Search Relationships'
+                        value={searchInput}
+                        onChange={(e) => setSearchInput(e.target.value)}
+                        className='form-control me-2'
+                    />
+
+                    <button className='btn btn-secondary' type='submit'>
+                        Search
+                    </button>
+                </form>
 
                 <table className='table table-striped table-bordered'>
                     <thead>
