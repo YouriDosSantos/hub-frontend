@@ -1,5 +1,5 @@
 // src/services/RelationshipService.js
-import { requestBackend } from "../utils/Requests";
+import { requestBackend } from "../../utils/Requests";
 
 // change for Pagination
 export const listRelationships = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {

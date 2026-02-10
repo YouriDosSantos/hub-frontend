@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
 import { findMe, mapUserInfo } from "../services/UserService";
 import './Login.css';
-import * as userRepo from "../components/UserRepository";
+import * as userRepo from "../../../repositories/UserRepository";
 
 
 export default function Login() {
