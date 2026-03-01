@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { deleteRelationship, listRelationships } from '../services/RelationshipService'
+import { deleteRelationship, listRelationships } from '../../api/relationships/RelationshipService'
 import { useNavigate } from 'react-router-dom'
 
 const RelationshipList = () => {

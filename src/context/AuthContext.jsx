@@ -1,6 +1,6 @@
 // AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
-import * as userRepo from "../components/UserRepository";
+import * as userRepo from "../repositories/UserRepository";
 
 const AuthContext = createContext();
 

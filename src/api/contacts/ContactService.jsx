@@ -1,4 +1,4 @@
-import { requestBackend } from "../utils/Requests";
+import { requestBackend } from "../../utils/requests";
 
 //changed for pagination
 export const listContacts = (page = 0, size = 5, sortBy = "id", direction = "asc", search = "") => {

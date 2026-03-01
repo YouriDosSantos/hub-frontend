@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { deleteContact, listContacts } from '../services/ContactService'
+import { deleteContact, listContacts } from '../../api/contacts/ContactService'
 import { useNavigate } from 'react-router-dom'
 
 const ContactList = () => {

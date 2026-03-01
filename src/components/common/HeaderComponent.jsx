@@ -2,9 +2,9 @@
 // import { findMe } from '../services/UserService';
 // import { mapUserInfo } from './UserInfo';
 // import { getAccessToken } from '../services/AuthService';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../services/AuthService';
+import { logout } from '../../api/auth/AuthService';
 
 
 const HeaderComponent = () => {

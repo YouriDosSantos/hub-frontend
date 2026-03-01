@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { deleteFinancialAccount, listFinancialAccounts } from '../services/FinancialAccountService'
+import { deleteFinancialAccount, listFinancialAccounts } from '../../api/financialAccounts/FinancialAccountService'
 import { useNavigate } from 'react-router-dom'
 
 const FinancialAccountList = () => {

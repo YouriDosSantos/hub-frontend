@@ -1,8 +1,8 @@
-import { requestBackend } from "../utils/Requests";
-import { CLIENT_ID, CLIENT_SECRET } from "../utils/system";
+import { requestBackend } from "../../utils/requests";
+import { CLIENT_ID, CLIENT_SECRET } from "../../utils/system";
 import qs from "qs";
-import * as AccessTokenRepository from "../components/AccessTokenRepository";
-import * as userRepo from "../components/UserRepository";
+import * as AccessTokenRepository from "../../repositories/AccessTokenRepository";
+import * as userRepo from "../../repositories/UserRepository";
 
 export function loginRequest(loginData) {
     

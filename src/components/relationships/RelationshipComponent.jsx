@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { createRelationship, getRelationship, updateRelationship } from '../services/RelationshipService'
+import { createRelationship, getRelationship, updateRelationship } from '../../api/relationships/RelationshipService'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const RelationshipComponent = () => {

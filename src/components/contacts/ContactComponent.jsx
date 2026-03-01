@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { createContact, getContact, updateContact } from '../services/ContactService'
+import { createContact, getContact, updateContact } from '../../api/contacts/ContactService'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const ContactComponent = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { createFinancialAccount, getFinancialAccount, updateFinancialAccount } from '../services/FinancialAccountService'
+import { createFinancialAccount, getFinancialAccount, updateFinancialAccount } from '../../api/financialAccounts/FinancialAccountService'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const FinancialAccountComponent = () => {

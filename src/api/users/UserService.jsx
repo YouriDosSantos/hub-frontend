@@ -1,4 +1,4 @@
-import { requestBackend } from "../../utils/Requests";
+import { requestBackend } from "../../utils/requests";
 
 export const findMe = () => {   
 

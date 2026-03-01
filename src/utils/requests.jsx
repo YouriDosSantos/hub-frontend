@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "./system";
-import { getAccessToken } from "../services/AuthService";
+import { getAccessToken } from "../api/auth/AuthService";
 
 export function requestBackend(config) {
     // Only add Bearer token if not calling the token endpoint

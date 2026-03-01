@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { loginRequest, saveAccessToken } from '../services/AuthService';
+import { loginRequest, saveAccessToken } from '../../../api/auth/AuthService';
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
-import { findMe, mapUserInfo } from "../services/UserService";
+import { useAuth } from "../../../context/AuthContext";
+import { findMe, mapUserInfo } from "../../../api/users/UserService";
 import './Login.css';
 import * as userRepo from "../../../repositories/UserRepository";
 
