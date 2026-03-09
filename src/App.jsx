@@ -12,6 +12,7 @@ import DashboardComponent from './components/dashboard/DashboardComponent'
 import Login from './components/auth/login/Login'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/common/ProtectedRoute'
+import RegisterUser from './components/auth/register/RegisterUser'
 
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
 
               {/* LOGIN */}
               <Route path='/login' element={ <Login /> }></Route>
+
+              {/* Register User */}
+              <Route path='/register-user' element={ <RegisterUser />}></Route>
 
             </Routes>
           </div>

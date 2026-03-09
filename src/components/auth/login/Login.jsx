@@ -87,6 +87,12 @@ export default function Login() {
             <div className="dsc-login-form-buttons dsc-mt20">
               <button type="submit" className="dsc-btn dsc-btn-blue">Enter</button>
             </div>
+
+            <div className="dsc-mt20">
+              <span>Don't have an account? </span>
+              <a href="/register-user" className="dsc-link" style={{cursor: "pointer"}}>Register Here</a>
+            </div>
+
           </form>
         </div>
       </section>
