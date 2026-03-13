@@ -41,6 +41,14 @@ const HeaderComponent = () => {
                 <li className="nav-item">
                   <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
                 </li>
+
+                {user?.roles?.includes("ROLE_ADMIN") && (
+                  <li className='nav-item'>
+                    <a className='nav-link text-warning fw-bold' href='/admin/users'>
+                      Admin Control
+                    </a>
+                  </li>
+                )}
               </>
             )}
             {user?.name && (

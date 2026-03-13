@@ -13,6 +13,8 @@ import Login from './components/auth/login/Login'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/common/ProtectedRoute'
 import RegisterUser from './components/auth/register/RegisterUser'
+import AdminUsers from './components/admin/AdminUsers'
+import AdminRoute from './components/common/AdminRoute'
 
 
 function App() {
@@ -62,6 +64,8 @@ function App() {
 
               {/* Register User */}
               <Route path='/register-user' element={ <RegisterUser />}></Route>
+
+              <Route path='/admin/users' element={ <AdminRoute><AdminUsers /></AdminRoute>}/>
 
             </Routes>
           </div>
