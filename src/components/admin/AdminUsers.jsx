@@ -80,6 +80,38 @@ export default function AdminUsers() {
             {modalType === "roles" && (
                 <EditRolesModal user={selectedUser} onClose={closeModal} />
             )}
+
+            {/* Key for Roles */}
+            <div className="card shadow-sm mt-4">
+                <div className="card-body">
+                    <h4 className="mb-3">Role Key</h4>
+
+                    <ul className="list-group">
+                        <li className="list-group-item">
+                            <strong>ROLE_NEWUSER</strong>
+                            <div className="text-muted small">
+                                Access to the Front page only while awaiting approval
+                            </div>
+                        </li>
+
+                        <li className="list-group-item">
+                            <strong>ROLE_OPERATOR</strong>
+                            <div className="text-muted small">
+                                Can Create and Read records
+                            </div>
+                        </li>
+
+                        <li className="list-group-item">
+                            <strong>ROLE_ADMIN</strong>
+                            <div className="text-muted small">
+                                Full system access
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            
         </div>
 
     );
