@@ -7,12 +7,13 @@ export const findMe = () => {
 
 export function mapUserInfo(apiResponse) {
     if(!apiResponse) {
-        return { name: "", email: "", roles: []};
+        return { name: "", email: "", roles: [], mustChangePassword: false};
     }
 
     return {
         name: apiResponse.name,
         email:apiResponse.email,
-        roles: apiResponse.roles || []
+        roles: apiResponse.roles || [],
+        mustChangePassword: !!apiResponse.mustChangePassword
     };
 }

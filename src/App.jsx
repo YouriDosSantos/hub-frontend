@@ -15,6 +15,7 @@ import ProtectedRoute from './components/common/ProtectedRoute'
 import RegisterUser from './components/auth/register/RegisterUser'
 import AdminUsers from './components/admin/AdminUsers'
 import AdminRoute from './components/common/AdminRoute'
+import ChangePassword from './components/auth/changePassword/ChangePassword'
 
 
 function App() {
@@ -66,6 +67,8 @@ function App() {
               <Route path='/register-user' element={ <RegisterUser />}></Route>
 
               <Route path='/admin/users' element={ <AdminRoute><AdminUsers /></AdminRoute>}/>
+
+              <Route path='/auth/change-password' element={<ChangePassword />} />
 
             </Routes>
           </div>

@@ -4,19 +4,29 @@
 // import { getAccessToken } from '../services/AuthService';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { logout } from '../../api/auth/AuthService';
 
 
 const HeaderComponent = () => {
 
-  const { user, setUser } = useAuth();
+  const { user, setUser, loading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleLogout(){
     logout();           //clear local storage
     setUser(null);      //reset context
     navigate("/login"); //redirect to login page
   }
+
+  const hideHeader = 
+    loading ||
+    location.pathname === "/login" ||
+    location.pathname === "/register-user" ||
+    location.pathname.startsWith('/auth');
+
+    if (hideHeader) return null;
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
@@ -33,20 +43,20 @@ const HeaderComponent = () => {
             {user && (
               <>
                 <li className="nav-item">
-                  <a className="nav-link text-white fw-bold" href="/contacts">Contacts</a>
+                  <Link className="nav-link text-white fw-bold" to="/contacts">Contacts</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link text-white fw-bold" href="/financial-accounts">Financial Accounts</a>
+                  <Link className="nav-link text-white fw-bold" to="/financial-accounts">Financial Accounts</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link text-white fw-bold" href="/relationships">Relationships</a>
+                  <Link className="nav-link text-white fw-bold" to="/relationships">Relationships</Link>
                 </li>
 
                 {user?.roles?.includes("ROLE_ADMIN") && (
                   <li className='nav-item'>
-                    <a className='nav-link text-warning fw-bold' href='/admin/users'>
+                    <Link className='nav-link text-warning fw-bold' to='/admin/users'>
                       Admin Control
-                    </a>
+                    </Link>
                   </li>
                 )}
               </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loginRequest, saveAccessToken } from '../../../api/auth/AuthService';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
@@ -9,52 +9,70 @@ import * as userRepo from "../../../repositories/UserRepository";
 
 export default function Login() {
 
-  const { setUser } = useAuth();
+  const { user, setUser } = useAuth();
+  const [formData, setFormData] = useState({
+      username: "",
+      password: ""
+  });
+  const [loginCompleted, setLoginCompleted] = useState(false);
+  const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        username: "",
-        password: ""
-    });
-
-    const navigate = useNavigate();
-
-    function handleChange(event) {
-        const { name, value } = event.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+  useEffect(() => {
+    if(!loginCompleted) {
+      return;
+    }
+    if(!user) {
+      return;
     }
 
+    if(user.mustChangePassword) {
+      navigate("/auth/change-password");
+    } else {
+      navigate("/dashboard");
+    }
+  }, [user,loginCompleted, navigate]);
 
-    function handleSubmit(event) {
-      event.preventDefault();
-      loginRequest(formData)
-      .then(response => {
-        saveAccessToken(response.data.access_token);
-
-        // ✅ fetch user info and update context
-        findMe().then(res => {
-          const info = mapUserInfo(res.data);
-          setUser(info);
-          userRepo.save(info);
-          navigate("/dashboard");
-        });
-      })
-      .catch(error => {
-        if (error.response) {
-          if (error.response.status === 400) {
-            const errMsg = error.response.data.error_description || "Invalid username or password";
-            alert(errMsg);
-          } else {
-            alert("Login failed: " + error.response.status);
-          }
-        } else {
-          alert("Network error: " + error.message);
-        }
-      });
+  function handleChange(event) {
+      const { name, value } = event.target;
+      setFormData(prev => ({ ...prev, [name]: value }));
   }
 
 
-  // .catch(error => console.log("Login Error", error));
+  function handleSubmit(event) {
+    event.preventDefault();
+    loginRequest(formData)
+    .then(response => {
+      saveAccessToken(response.data.access_token);
 
+      // fetch user info and update context
+      findMe().then(res => {
+        console.log("ME RESPONSE:", res.data);
+
+        const info = mapUserInfo(res.data);
+        setUser(info);
+        userRepo.save(info);
+        setLoginCompleted(true);
+
+        // if(info.mustChangePassword) {
+        //   navigate("/auth/change-password");
+        //   return;
+        // }
+        // navigate("/dashboard");
+      });
+    })
+    .catch(error => {
+      if (error.response) {
+        if (error.response.status === 400) {
+          const errMsg = error.response.data.error_description || "Invalid username or password";
+          alert(errMsg);
+        } else {
+          alert("Login failed: " + error.response.status);
+        }
+      } else {
+        alert("Network error: " + error.message);
+      }
+    });
+  }
 
     return (
          <main>

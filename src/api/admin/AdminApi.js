@@ -31,3 +31,10 @@ export function updateUserRoles(id, roles) {
   });
 }
 
+export function resetUserPassword(id) {
+  return requestBackend({
+    method: "POST",
+    url: `/api/admin/users/${id}/reset-password`
+  });
+}
+

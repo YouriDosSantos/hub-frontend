@@ -3,6 +3,7 @@ import { getAllUsers } from "../../api/admin/AdminApi";
 import EditNameModal from "./EditNameModal";
 import EditEmailModal from "./EditEmailModal";
 import EditRolesModal from "./EditRolesModal";
+import ResetPasswordModal from "./ResetPasswordModal";
 
 export default function AdminUsers() {
     const [users, setUsers] = useState([]);
@@ -58,6 +59,7 @@ export default function AdminUsers() {
                                             <button className="btn btn-info" onClick={() => openModal(user, "name")}>Edit Name</button>
                                             <button className="btn btn-warning" onClick={() => openModal(user, "email")}>Edit Email</button>
                                             <button className="btn btn-primary" onClick={() => openModal(user, "roles")}>Edit Roles</button>
+                                            <button className="btn btn-danger" onClick={() => openModal(user, "reset")}>Reset Password</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -79,6 +81,10 @@ export default function AdminUsers() {
 
             {modalType === "roles" && (
                 <EditRolesModal user={selectedUser} onClose={closeModal} />
+            )}
+
+            {modalType === "reset" && (
+                <ResetPasswordModal user={selectedUser} onClose={closeModal} />
             )}
 
             {/* Key for Roles */}
